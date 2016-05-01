@@ -27,6 +27,8 @@ public class tab_home_screenFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        TextView title = (TextView) getActivity().findViewById(R.id.textview_title);
+        title.setText(getResources().getString(R.string.home_screen));
         tabHost = new FragmentTabHost(getActivity());
         //tabHost = (FragmentTabHost) getActivity().findViewById(android.R.id.tabhost);
         tabHost.setup(getActivity(),getChildFragmentManager(),R.id.fragment_frame);

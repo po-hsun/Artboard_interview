@@ -13,12 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    String title;
+    MenuItem menuitem;
+    Stack<MenuItem> menustack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,44 +50,35 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame,new tab_home_screenFragment()).commit();
-
-
-//        FragmentTabHost tabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
-//        tabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-//        tabHost.addTab(tabHost.newTabSpec("Tab1")
-//                        .setIndicator("Tab1"),
-//                home_screenFragment.class,
-//                null);
-//        tabHost.addTab(tabHost.newTabSpec("Tab2")
-//                        .setIndicator("Tab2"),
-//                twoFragment.class,
-//                null);
-//        tabHost.addTab(tabHost.newTabSpec("Tab3")
-//                        .setIndicator("Tab3"),
-//                threeFragment.class,
-//                null);
-//        TabWidget widget = tabHost.getTabWidget();
-//        for(int i = 0; i < widget.getChildCount(); i++) {
-//            View v = widget.getChildAt(i);
-//
-//            // Look for the title view to ensure this is an indicator and not a divider.
-//            TextView tv = (TextView)v.findViewById(android.R.id.title);
-//            if(tv == null) {
-//                continue;
-//            }
-//            v.setBackgroundResource(R.drawable.tab_pink);
-//        }
-
-//        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+        menustack = new Stack<MenuItem>();
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//            @Override
 //            public void onBackStackChanged() {
+//                int backCount = getSupportFragmentManager().getBackStackEntryCount();
+//                Log.e("fragmentstack",String.valueOf(backCount));
+//                Log.e("menustack",String.valueOf(menustack.size()));
+//                if(backCount == 0){
+//                    //Log.e("ddd",fragmentManager.getBackStackEntryAt(backCount-1).getName());
+//                    Menu menu = (Menu)findViewById(R.id.menu);
+//                    menustack.pop().setChecked(false);
+//                    menu.findItem(R.id.home_screen).setChecked(true);
+//                }else{
+//                    if((menustack.size() - backCount) > 0) {
+//                        menustack.pop();
+//                    }
+//                }
+//                Log.e("fragmentstack",String.valueOf(backCount));
+//                Log.e("menustack",String.valueOf(menustack.size()));
 //
-////                int backCount = getSupportFragmentManager().getBackStackEntryCount();
-////                if (backCount == 0){
-////                    // block where back has been pressed. since backstack is zero.
-////                }
 //            }
 //        });
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_frame, new tab_home_screenFragment(),getResources().getString(R.string.home_screen));
+        fragmentTransaction.commit();
+
+
+
 
 
     }
@@ -97,7 +90,6 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            //TextView title = (TextView) findViewById(R.id.textview_title);
 
         }
 
@@ -130,14 +122,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        //FragmentTabHost tabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
         Fragment fragment = null;
+        String tag = null;
 
         if (id == R.id.home_screen) {
             fragment = new tab_home_screenFragment();
 
         } else if (id == R.id.baby_shop) {
-            fragment = new twoFragment();
+            //fragment = new twoFragment();
 
         } else if (id == R.id.my_purse) {
 
@@ -153,19 +145,18 @@ public class MainActivity extends AppCompatActivity
         }
 
         if(fragment != null) {
-            //tabHost.setVisibility(View.INVISIBLE);
+            tag = item.toString();
+            menustack.push(item);
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_frame, fragment);
-            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.fragment_frame, fragment,tag);
+            fragmentTransaction.addToBackStack(tag);
             fragmentTransaction.commit();
         }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        TextView title = (TextView) findViewById(R.id.textview_title);
-        title.setText(item.getTitle());
 
 
 

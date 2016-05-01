@@ -23,6 +23,8 @@ public class twoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //TextView title = (TextView) getActivity().findViewById(R.id.textview_title);
+        //title.setText("Tab2");
         return inflater.inflate(R.layout.fragment_two, container, false);
     }
 
