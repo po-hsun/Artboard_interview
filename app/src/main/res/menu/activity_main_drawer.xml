@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/home_screen"
+            android:title="@string/home_screen"
+            />
+        <item
+            android:id="@+id/baby_shop"
+            android:title="@string/baby_shop" />
+        <item
+            android:id="@+id/my_purse"
+            android:title="@string/my_purse" />
+        <item
+            android:id="@+id/record"
+            android:title="@string/record" />
+        <item
+            android:id="@+id/discussion"
+            android:title="@string/discussion"/>
+        <item
+            android:id="@+id/QR_code"
+            android:title="@string/QR_code"/>
+
+    </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>

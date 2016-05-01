@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Artboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="home_screen">主畫面</string>
+    <string name="baby_shop">寶貝商城</string>
+    <string name="my_purse">我的錢包</string>
+    <string name="record">參觀托育中心紀錄</string>
+    <string name="discussion">照育討論區</string>
+    <string name="QR_code">掃描QRcode</string>
+    <string name="babysitter">切換權限：\n保姆</string>
+    <string name="babysitter_h">切換權限：保姆</string>
+    <string name="center">切換權限：\n托育中心</string>
+    <string name="feedmilk">餵奶</string>
+    <string name="day_time_last_time">今日次數：&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;最近一次：</string>
+    <string name="today_num_time">今日人數： 8位\n成立時間： 2003年</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
